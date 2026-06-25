@@ -249,7 +249,7 @@
               <div class="absolute -bottom-4 -left-4 w-full h-full bg-[#F34D8E] rounded-lg-card"></div>
 
               <div class="relative bg-[#262851] aspect-[3/4] overflow-hidden rounded-lg-card">
-                <img src="[https://raw.githubusercontent.com/chuchu-programming/chuchu-programming.github.io/refs/heads/main/a00.png]" alt="Mimi portrait" class="w-full h-full object-cover" style="mix-blend-mode:luminosity;filter:contrast(1.3) brightness(.85)"/>
+                <img src="[/chuchu-programming.github.io/a00.png]" alt="Mimi portrait" class="w-full h-full object-cover" style="mix-blend-mode:luminosity;filter:contrast(1.3) brightness(.85)"/>
                 <div class="absolute inset-0 bg-gradient-to-br from-[#07BBF4]/50 via-transparent to-[#F34D8E]/50 mix-blend-color"></div>
                 <div class="absolute inset-0 bg-[#262851]/15"></div>
                 <div class="absolute inset-0 scanlines pointer-events-none opacity-60"></div>
