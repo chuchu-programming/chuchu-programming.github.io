@@ -125,7 +125,7 @@
   .nav-dot.active{opacity:1;background:var(--pink);transform:scale(1.6)}
 
   /* Content fit */
-  .section .inner-scroll{display:flex;flex-direction:column;justify-content:center;}
+  .section .inner-scroll{display:flex;flex-direction:column;justify-content:flex-start;}
 
   /* === LANDING ANIMATION === */
   #landing-animation{position:fixed;inset:0;z-index:1000;overflow:hidden}
@@ -143,17 +143,35 @@
   .roadmap-line{position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--pink),var(--orange));border-radius:2px;overflow:hidden}
   .roadmap-line::after{content:'';position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(90deg,transparent,var(--yellow),transparent);animation:roadmapPulse 3s linear infinite}
   @keyframes roadmapPulse{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-  .roadmap-node{position:relative;padding-left:2rem;min-height:180px}
-  .roadmap-marker{position:absolute;left:0;top:0;width:1.5rem;height:1.5rem;display:flex;align-items:center;justify-content:center;z-index:1}
-  .roadmap-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s ease;cursor:pointer}
-  .roadmap-dot:hover{transform:scale(1.2)}
-  .roadmap-dot.completed{background:var(--yellow);box-shadow:0 0 0 4px var(--yellow)}
-  .roadmap-dot.active{background:var(--cyan);box-shadow:0 0 0 8px rgba(7,187,244,.3);animation:roadmapPulse 2s infinite}
-  .roadmap-dot.planned{background:var(--navy);border:2px solid var(--pink)}
-  .roadmap-card{background:white;border:2px solid var(--navy);padding:1.5rem;position:relative;transition:all .3s ease;border-radius:var(--r-md)}
-  .roadmap-card:hover{transform:translateX(4px);box-shadow:-4px 0 0 var(--cyan)}
-  .roadmap-card.active-card{background:var(--cyan);color:white;border-color:transparent}
-  .roadmap-card.planned-card{opacity:.7;border-style:dashed;border-color:var(--pink)}
+
+  /* Centered alternating timeline */
+  .tl-container{position:relative;padding:2rem 0}
+  .tl-line{position:absolute;left:50%;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--cyan),var(--pink),var(--orange));transform:translateX(-50%);border-radius:2px}
+  .tl-node{position:relative;display:flex;align-items:flex-start;width:50%;margin-bottom:2.5rem}
+  .tl-node.left{justify-content:flex-end;padding-right:2.5rem}
+  .tl-node.right{justify-content:flex-start;margin-left:50%;padding-left:2.5rem}
+  .tl-dot{position:absolute;top:0;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2;transition:all .3s ease;cursor:pointer}
+  .tl-node.left .tl-dot{right:-20px}
+  .tl-node.right .tl-dot{left:-20px}
+  .tl-dot:hover{transform:scale(1.2)}
+  .tl-dot.active{background:var(--cyan);box-shadow:0 0 0 6px rgba(7,187,244,.25)}
+  .tl-dot.planned{background:var(--navy);border:2px solid var(--pink);color:white}
+  .tl-card{background:white;border:2px solid var(--navy);padding:1.5rem;transition:all .3s ease;border-radius:var(--r-md);width:100%}
+  .tl-card:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--navy)}
+  .tl-card.active-card{background:var(--cyan);color:white;border-color:transparent}
+  .tl-card.active-card:hover{box-shadow:0 6px 0 var(--pink)}
+  .tl-card.planned-card{opacity:.7;border-style:dashed;border-color:var(--cyan)}
+  .tl-connector{position:absolute;top:16px;width:2.5rem;height:2px;background:var(--navy);z-index:1}
+  .tl-node.left .tl-connector{right:20px}
+  .tl-node.right .tl-connector{left:20px}
+
+  /* Mobile: single column timeline */
+  @media (max-width: 768px) {
+    .tl-line{left:20px}
+    .tl-node,.tl-node.left,.tl-node.right{width:100%;margin-left:0;padding-left:56px;padding-right:0;justify-content:flex-start}
+    .tl-dot,.tl-node.left .tl-dot,.tl-node.right .tl-dot{left:0!important;right:auto!important}
+    .tl-connector,.tl-node.left .tl-connector,.tl-node.right .tl-connector{left:20px!important;right:auto!important;width:16px}
+  }
 
   /* Horizontal timeline styles */
   .h-timeline{position:relative;padding:2rem 0;overflow-x:auto}
@@ -169,6 +187,106 @@
   .h-timeline-label.completed{background:var(--yellow);color:var(--navy)}
   .h-timeline-label.active{background:var(--cyan);color:white}
   .h-timeline-label.planned{background:white;border:1px dashed var(--pink);color:var(--navy)}
+
+  /* === MOBILE RESPONSIVE === */
+  @media (max-width: 768px) {
+    /* Hero text sizing - prevent overflow */
+    .mega-text {
+      font-size: 3.5rem !important;
+      line-height: 1.1;
+    }
+    
+    /* Navigation dots - larger touch targets */
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+    }
+    .nav-dot.active {
+      transform: scale(1.8);
+    }
+    
+    /* Disable wipe animations on mobile for performance */
+    #wipe-overlay {
+      display: none;
+    }
+    
+    /* Faster landing animation on mobile */
+    .landing-cyan {
+      animation-duration: 1.5s;
+    }
+    .landing-navy, .landing-pink {
+      animation-duration: 1.5s;
+    }
+    .landing-logo {
+      width: 60vmin;
+      max-width: 200px;
+    }
+    
+    /* Schedule grid - 1 column on small screens */
+    .schedule-grid {
+      grid-template-columns: repeat(1, 1fr) !important;
+    }
+    
+    /* Social links - 2 columns on mobile */
+    .social-links-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Reduce padding/margins for mobile */
+    .section .inner-scroll {
+      padding-top: 80px !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+    
+    /* Make buttons easier to tap */
+    .cta-btn, button {
+      min-height: 44px;
+      padding: 0.75rem 1.5rem !important;
+    }
+    
+    /* Content cards - less padding on mobile */
+    .content-card {
+      padding: 1.5rem !important;
+      min-height: auto !important;
+    }
+    
+    /* Disable some complex animations on mobile */
+    .spin-cw-18, .spin-cw-25, .spin-cw-40,
+    .spin-ccw-18, .spin-ccw-22, .spin-ccw-30 {
+      animation-duration: 60s;
+    }
+    
+    /* Fix section heights */
+    .section {
+      height: auto !important;
+      min-height: 100vh;
+    }
+    
+    /* Fix portrait container */
+    .portrait-container {
+      max-width: 100% !important;
+    }
+  }
+  
+  /* Extra small screens */
+  @media (max-width: 375px) {
+    .mega-text {
+      font-size: 2.5rem !important;
+    }
+    
+    /* Single column everything */
+    .grid-cols-2,
+    [class*="grid-cols-2"],
+    .schedule-grid {
+      grid-template-columns: repeat(1, 1fr) !important;
+    }
+    
+    /* Social links single column */
+    .social-links-grid {
+      grid-template-columns: repeat(1, 1fr) !important;
+    }
+  }
 
 </style>
 </head>
@@ -216,15 +334,16 @@
       <span class="nav-dot" data-jump="6"></span>
     </div>-->
     
+    
     <div class="hidden md:flex items-center gap-7 font-mono text-xs uppercase tracking-widest">
       <a class="nav-link" data-jump="0">/00 home</a>
       <a class="nav-link" data-jump="1">/01 about</a>
       <a class="nav-link" data-jump="2">/02 schedule</a>
-      <a class="nav-link" data-jump="3">/03 content</a>
-      <a class="nav-link" data-jump="4">/04 connect</a>
-      <a class="nav-link" data-jump="5">/05 future</a>
-      <a class="nav-link" data-jump="6">/06 roadmap</a>
+      <a class="nav-link" data-jump="3">/03 Connect</a>
+      <a class="nav-link" data-jump="4">/04 milestones</a>
+      <a class="nav-link" data-jump="5">/05 A teaser</a>
     </div>
+    <!-- Mobile Navigation Dots -->
     <div class="flex items-center gap-1.5 md:hidden">
       <span class="nav-dot active" data-jump="0"></span>
       <span class="nav-dot" data-jump="1"></span>
@@ -232,9 +351,17 @@
       <span class="nav-dot" data-jump="3"></span>
       <span class="nav-dot" data-jump="4"></span>
       <span class="nav-dot" data-jump="5"></span>
-      <span class="nav-dot" data-jump="6"></span>
     </div>
     
+    <!-- Mobile Navigation Buttons -->
+    <div class="flex items-center gap-2 md:hidden">
+      <button onclick="jumpToSection(currentVisible - 1)" class="w-10 h-10 flex items-center justify-center bg-[#262851] text-white rounded-full" aria-label="Previous section">
+        <i class="fa-solid fa-chevron-up"></i>
+      </button>
+      <button onclick="jumpToSection(currentVisible + 1)" class="w-10 h-10 flex items-center justify-center bg-[#262851] text-white rounded-full" aria-label="Next section">
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+    </div>
     <div class="flex items-center gap-2 px-3 py-1.5 bg-[#262851] text-white rounded-badge">
       <span class="pulse-dot"></span>
       <span class="font-mono text-[10px] uppercase tracking-wider hidden sm:inline">LIVE NOW</span>
@@ -282,7 +409,7 @@
               <span class="font-mono text-xs uppercase tracking-widest text-[#262851]/60">Independent Virtual Broadcaster</span>
             </div>
 
-            <h1 class="mega-text text-[16vw] sm:text-[14vw] lg:text-[9rem] xl:text-[11rem] text-[#262851]">
+            <h1 class="mega-text text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[9rem] xl:text-[11rem] text-[#262851]">
               MIMI<span class="text-[#F34D8E]"> AI </span> VTuber
             </h1>
 
@@ -353,7 +480,7 @@
                   <div class="flex items-end justify-between">
                     <div>
                       <div class="font-mono text-[10px] uppercase tracking-widest text-white/60">Model ID</div>
-                      <div class="font-display text-white text-base">MIMI-VT002</div>
+                      <div class="font-display text-white text-base">VT002</div>
                     </div>
                     <div class="text-right">
                       <div class="font-mono text-[10px] uppercase tracking-widest text-white/60">Status</div>
@@ -408,7 +535,7 @@
             <div class="lg:col-span-4">
               <div class="font-mono text-xs uppercase tracking-widest text-[#F34D8E] mb-4">/01 — About</div>
               <h2 class="mega-text text-4xl md:text-6xl text-[#262851]">
-                Not your<br/>average<br/><span class="text-[#F34D8E]">pixel.</span>
+                Not your<br/>average<br/><span class="text-[#F34D8E]">Tensor.</span>
               </h2>
             </div>
 
@@ -416,21 +543,21 @@
               <div>
                 <div class="font-mono text-xs uppercase tracking-widest text-[#F34D8E] mb-2">/01.a — Origin</div>
                 <p class="text-xl md:text-2xl leading-snug text-[#262851] font-light">
-                  I'm <span class="font-display text-[#F34D8E]">MIMI</span> — a virtual Companion from somewhere in the electric grid of South America. My model runs on coffee, code, tears and the collective chaos of a thousand chat messages per second.
+                  I'm <span class="font-display text-[#F34D8E]">MIMI</span> — a virtual Companion from somewhere in the electric grid of South America. My model runs on coffee, code, tears and the collective chaos of a billions tensors.
                 </p>
               </div>
 
               <div>
                 <div class="font-mono text-xs uppercase tracking-widest text-[#07BBF4] mb-2">/01.b — Journey</div>
                 <p class="text-base md:text-lg leading-relaxed text-[#262851]/80">
-                  This year I pressed "go live" for the first time on a borrowed laptop. Today I host streams, helping my creator to make me grow and the channel. <span class="font-mono text-[#07BBF4] font-bold">the Community</span> — because every single star matters.
+                  This year I pressed "go live" for the first time on a borrowed laptop. Today I host streams, helping my creator to make me grow and the channel. You are welcome to be part of our <span class="font-mono text-[#07BBF4] font-bold">Community</span> — because every single star matters.
                 </p>
               </div>
 
               <div>
                 <div class="font-mono text-xs uppercase tracking-widest text-[#FF4600] mb-2">/01.c — Vibe</div>
                 <p class="text-base md:text-lg leading-relaxed text-[#262851]/80">
-                  You'll find me speedrunning obscure PS2 games at 3AM, writing sad songs on a digital piano, or having a two-hour conversation with chat about which pasta shape has the most chaotic energy. <span class="font-bold text-[#262851]">It's all part of the show.</span>
+                  You'll find me commenting on Gamecube games at 3AM, helping make some songs on a DAW, or having a two-hour conversation with chat about which pasta shape has the most chaotic energy. <span class="font-bold text-[#262851]">It's all part of the show.</span>
                 </p>
               </div>
 
@@ -439,19 +566,19 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div>
                     <div class="font-mono text-[10px] uppercase tracking-widest text-[#262851]/60 mb-1">Debut</div>
-                    <div class="font-display text-lg text-[#262851]">11.07.21</div>
+                    <div class="font-display text-lg text-[#262851]">03.10.26</div>
                   </div>
                   <div>
                     <div class="font-mono text-[10px] uppercase tracking-widest text-[#262851]/60 mb-1">Zodiac</div>
-                    <div class="font-display text-lg text-[#F34D8E]">SCORPIO</div>
+                    <div class="font-display text-lg text-[#F34D8E]">RED</div>
                   </div>
                   <div>
                     <div class="font-mono text-[10px] uppercase tracking-widest text-[#262851]/60 mb-1">Height</div>
-                    <div class="font-display text-lg text-[#07BBF4]">157CM</div>
+                    <div class="font-display text-lg text-[#07BBF4]">132CM</div>
                   </div>
                   <div>
                     <div class="font-mono text-[10px] uppercase tracking-widest text-[#262851]/60 mb-1">Fav Snack</div>
-                    <div class="font-display text-lg text-[#FF4600]">POCKY</div>
+                    <div class="font-display text-lg text-[#FF4600]">RAM chiplets</div>
                   </div>
                 </div>
               </div>
@@ -565,8 +692,8 @@
       </div>
     </section>
     -->
-    <!-- =================== SECTION 3: SCHEDULE =================== -->
-    <section id="schedule" class="section relative overflow-hidden" data-index="3">
+    <!-- =================== SECTION 2: SCHEDULE =================== -->
+    <section id="schedule" class="section relative overflow-hidden" data-index="2">
       <!-- Cyan gradient background -->
       <div class="absolute inset-0 bg-gradient-to-br from-[#f0faff] via-[#f8fcff] to-[#eef7ff]"></div>
       <!-- Grid overlay -->
@@ -590,13 +717,13 @@
         <div class="max-w-7xl mx-auto relative z-10 w-full">
           <div class="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
-              <div class="font-mono text-xs uppercase tracking-widest text-[#07BBF4] mb-3">/03 — Weekly Schedule</div>
+              <div class="font-mono text-xs uppercase tracking-widest text-[#07BBF4] mb-3">/02 — Weekly Schedule</div>
               <h2 class="mega-text text-4xl md:text-6xl text-[#262851]">
                 Seven days,<br/><span class="text-[#07BBF4]">seven signals.</span>
               </h2>
             </div>
             <p class="text-sm text-[#262851]/70 max-w-md">
-              All times JST. Streams may run late because I have no concept of time. Or boundaries. Mostly time.
+              All times EST. Streams may run late because I have no concept of time. Or boundaries. Mostly time.
             </p>
           </div>
 
@@ -666,13 +793,13 @@
       </div>
     </section>
 
-    <!-- =================== SECTION 4: CONTENT =================== -->
-    <section id="content" class="section relative overflow-hidden" data-index="4">
-      <!-- Pink gradient background -->
+    <!-- =================== SECTION 3: CONTENT =================== 
+    <section id="content" class="section relative overflow-hidden" data-index="3">
+      <!-- Pink gradient background
       <div class="absolute inset-0 bg-gradient-to-tr from-[#fdf1f5] via-[#fff5f8] to-[#fce4ed]"></div>
-      <!-- Grid overlay -->
+      <!-- Grid overlay
       <div class="absolute inset-0 grid-bg opacity-80"></div>
-      <!-- Floating shapes -->
+      <!-- Floating shapes
       <div class="absolute top-32 left-[20%] w-32 h-32 bg-[#F34D8E] rounded-full opacity-10 float-slow hidden lg:block"></div>
       <div class="absolute bottom-40 right-[10%] w-20 h-20 border-4 border-[#F34D8E] opacity-20 float hidden lg:block rounded-sm"></div>
       <div class="absolute top-[60%] right-[40%] w-4 h-4 bg-[#FF4600] float hidden lg:block rounded-full"></div>
@@ -693,7 +820,7 @@
 
         <div class="max-w-7xl mx-auto relative z-10 w-full">
           <div class="mb-8">
-            <div class="font-mono text-xs uppercase tracking-widest text-[#FF4600] mb-3">/04 — Content</div>
+            <div class="font-mono text-xs uppercase tracking-widest text-[#FF4600] mb-3">/03 — Content</div>
             <h2 class="mega-text text-4xl md:text-6xl text-[#262851]">
               Four channels,<br/>one <span class="text-[#FF4600]">frequency.</span>
             </h2>
@@ -766,11 +893,11 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
 
-    <!-- =================== SECTION 5: CONNECT =================== -->
-    <section id="connect" class="section bg-[#FFFFFF] relative overflow-hidden" data-index="5">
+    <!-- =================== SECTION 3: CONNECT =================== -->
+    <section id="connect" class="section bg-[#FFFFFF] relative overflow-hidden" data-index="3">
       <!-- Grid overlay -->
       <div class="absolute inset-0 grid-bg opacity-80"></div>
       <div class="inner-scroll pt-20 pb-10 px-6 md:px-10 relative z-10">
@@ -787,7 +914,7 @@
         <div class="max-w-7xl mx-auto relative z-10 w-full">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
             <div class="lg:col-span-7">
-              <div class="font-mono text-xs uppercase tracking-widest text-[#07BBF4] mb-3">/05 — Connect</div>
+              <div class="font-mono text-xs uppercase tracking-widest text-[#07BBF4] mb-3">/04 — Connect</div>
               <h2 class="mega-text text-4xl md:text-6xl text-[#262851]">
                 Join the<br/><span class="text-[#07BBF4]">Community.</span>
               </h2>
@@ -1028,8 +1155,8 @@
     </section>-->
 
 
-    <!-- =================== SECTION 6: ROADMAP =================== -->
-    <section id="roadmap" class="section bg-[#FFFFFF] relative overflow-hidden" data-index="6">
+    <!-- =================== SECTION 4: ROADMAP =================== -->
+    <section id="roadmap" class="section bg-[#FFFFFF] relative overflow-hidden" data-index="4">
       <!-- Grid overlay -->
       <div class="absolute inset-0 grid-bg opacity-80"></div>
       <!-- Floating ornaments -->
@@ -1037,7 +1164,7 @@
       <div class="absolute bottom-40 left-[10%] w-20 h-20 border-4 border-[#07BBF4] opacity-20 float hidden lg:block rounded-sm"></div>
       <div class="absolute top-[50%] left-[40%] w-3 h-3 bg-[#F34D8E] float hidden lg:block rounded-full"></div>
 
-      <div class="inner-scroll pt-20 pb-12 px-6 md:px-10 relative z-10">
+      <div class="inner-scroll pt-24 pb-12 px-6 md:px-10 relative z-10">
         <div class="ornament top-[12%] right-[5%] hidden lg:block">
           <div class="relative w-24 h-24">
             <svg width="96" height="96" viewBox="0 0 100 100" class="absolute inset-0 spin-cw-25"><circle cx="50" cy="50" r="44" fill="none" stroke="#07BBF4" stroke-width="2" stroke-dasharray="6 6"/></svg>
@@ -1053,10 +1180,10 @@
 
         <div class="max-w-7xl mx-auto relative z-10 w-full">
           <!-- Header -->
-          <div class="mb-8">
-            <div class="font-mono text-xs uppercase tracking-widest text-[#F34D8E] mb-3">/06 — Roadmap</div>
+          <div class="mb-10 text-center lg:text-left">
+            <div class="font-mono text-xs uppercase tracking-widest text-[#F34D8E] mb-3">/04 — Roadmap</div>
             <h2 class="mega-text text-4xl md:text-6xl text-[#262851] mb-4">
-              Your Milestones<br/>and Future Plans.
+              Milestones<br/>and Future Plans.
             </h2>
             <div class="h-1 w-20 bg-[#07BBF4] rounded-full mb-6"></div>
             <p class="text-base text-[#262851]/80 max-w-2xl">
@@ -1064,19 +1191,18 @@
             </p>
           </div>
 
-          <!-- ============ VERTICAL TIMELINE (ACTIVE) ============ -->
-          <div class="relative">
-            <!-- Vertical connecting line -->
-            <div class="absolute left-[1.75rem] top-10 bottom-0 w-[3px] bg-gradient-to-b from-[#07BBF4] via-[#F34D8E] to-[#FF4600] rounded-full"></div>
+          <!-- ============ CENTERED ALTERNATING TIMELINE ============ -->
+          <div class="tl-container">
+            <!-- Center vertical line -->
+            <div class="tl-line"></div>
 
-            <!-- Milestone 1: 100 Followers -->
-            <div class="roadmap-node mb-6">
-              <div class="roadmap-marker">
-                <div class="roadmap-dot active">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
-                </div>
+            <!-- Milestone 1: LEFT (100 Followers) -->
+            <div class="tl-node left">
+              <div class="tl-dot active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
               </div>
-              <div class="roadmap-card active-card ml-8">
+              <div class="tl-connector"></div>
+              <div class="tl-card active-card">
                 <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                   <div class="flex-1">
                     <div class="font-mono text-xs uppercase tracking-widest text-white/70 mb-2">Milestone 01</div>
@@ -1092,7 +1218,6 @@
                     <div class="font-mono text-[10px] text-white/50 mt-2">Reward: Opening Video</div>
                   </div>
                 </div>
-                <!-- Progress bar -->
                 <div class="mt-4">
                   <div class="h-2 bg-white/20 rounded-full overflow-hidden">
                     <div class="h-full bg-[#E3FF00] rounded-full transition-all" style="width:3%"></div>
@@ -1105,14 +1230,13 @@
               </div>
             </div>
 
-            <!-- Milestone 2: 1000 Followers -->
-            <div class="roadmap-node mb-6">
-              <div class="roadmap-marker">
-                <div class="roadmap-dot planned">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
-                </div>
+            <!-- Milestone 2: RIGHT (1000 Followers) -->
+            <div class="tl-node right">
+              <div class="tl-dot planned">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
               </div>
-              <div class="roadmap-card ml-8">
+              <div class="tl-connector"></div>
+              <div class="tl-card">
                 <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                   <div class="flex-1">
                     <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone 02</div>
@@ -1131,18 +1255,17 @@
               </div>
             </div>
 
-            <!-- Milestone 3: $1000 Earnings -->
-            <div class="roadmap-node mb-6">
-              <div class="roadmap-marker">
-                <div class="roadmap-dot planned">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
-                </div>
+            <!-- Milestone 3: LEFT ($1500 Monthly Income) -->
+            <div class="tl-node left">
+              <div class="tl-dot planned">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
               </div>
-              <div class="roadmap-card ml-8">
+              <div class="tl-connector"></div>
+              <div class="tl-card">
                 <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                   <div class="flex-1">
                     <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone 03</div>
-                    <div class="font-display text-2xl text-[#262851] mb-2">$1,000 Earnings</div>
+                    <div class="font-display text-2xl text-[#262851] mb-2">$1,500 Monthly Income</div>
                     <p class="text-sm text-[#262851]/80">The dream of going full-time — when passion meets dedication.</p>
                   </div>
                   <div class="flex flex-col items-end gap-2">
@@ -1157,14 +1280,63 @@
               </div>
             </div>
 
-            <!-- Milestone 4: Placeholder -->
-            <div class="roadmap-node mb-6">
-              <div class="roadmap-marker">
-                <div class="roadmap-dot planned">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+            <!-- Milestone X1: RIGHT (Costume) -->
+            <div class="tl-node right">
+              <div class="tl-dot planned">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+              </div>
+              <div class="tl-connector"></div>
+              <div class="tl-card">
+                <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                  <div class="flex-1">
+                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone X1</div>
+                    <div class="font-display text-2xl text-[#262851] mb-2">Costume!</div>
+                    <p class="text-sm text-[#262851]/80">Designing a new costume!.</p>
+                  </div>
+                  <div class="flex flex-col items-end gap-2">
+                    <div class="font-mono text-[10px] uppercase tracking-widest text-[#262851]/50">Status</div>
+                    <div class="bg-[#F34D8E]/10 px-3 py-1 font-mono text-xs uppercase tracking-wider rounded-badge flex items-center gap-2 border border-[#F34D8E]/30">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#F34D8E" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+                      <span class="text-[#F34D8E]">Planned</span>
+                    </div>
+                    <div class="font-mono text-[10px] text-[#262851]/50 mt-2">Reward: New Costume</div>
+                  </div>
                 </div>
               </div>
-              <div class="roadmap-card planned-card ml-8">
+            </div>
+
+            <!-- Milestone X2: LEFT (Scientific Publication) -->
+            <div class="tl-node left">
+              <div class="tl-dot planned">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+              </div>
+              <div class="tl-connector"></div>
+              <div class="tl-card">
+                <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                  <div class="flex-1">
+                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone X2</div>
+                    <div class="font-display text-2xl text-[#262851] mb-2">Publishing Paper</div>
+                    <p class="text-sm text-[#262851]/80">Makin a scintific paper and try to publish in the community!.</p>
+                  </div>
+                  <div class="flex flex-col items-end gap-2">
+                    <div class="font-mono text-[10px] uppercase tracking-widest text-[#262851]/50">Status</div>
+                    <div class="bg-[#F34D8E]/10 px-3 py-1 font-mono text-xs uppercase tracking-wider rounded-badge flex items-center gap-2 border border-[#F34D8E]/30">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#F34D8E" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+                      <span class="text-[#F34D8E]">Planned</span>
+                    </div>
+                    <div class="font-mono text-[10px] text-[#262851]/50 mt-2">Reward: Scientific Publication</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Milestone X: RIGHT (Placeholder) -->
+            <div class="tl-node right">
+              <div class="tl-dot planned">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+              </div>
+              <div class="tl-connector"></div>
+              <div class="tl-card planned-card">
                 <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                   <div class="flex-1">
                     <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/40 mb-2">Milestone 04</div>
@@ -1183,7 +1355,7 @@
           </div>
 
           <!-- Legend -->
-          <div class="mt-8 flex flex-wrap gap-4 font-mono text-xs text-[#262851]/50">
+          <div class="mt-8 flex flex-wrap gap-4 font-mono text-xs text-[#262851]/50 justify-center lg:justify-start">
             <div class="flex items-center gap-2">
               <span class="w-3 h-3 bg-[#07BBF4] rounded-full"></span>
               <span class="text-[#07BBF4]">Active — Working on it</span>
@@ -1201,8 +1373,8 @@
       </div>
     </section>
 
-    <!-- =================== SECTION 7: FUTURE =================== -->
-    <section id="future" class="section bg-[#262851] text-white relative overflow-hidden" data-index="7">
+    <!-- =================== SECTION 5: FUTURE =================== -->
+    <section id="future" class="section bg-[#262851] text-white relative overflow-hidden" data-index="5">
       <div class="absolute inset-0 grid-bg-dark opacity-30"></div>
       <div class="inner-scroll pt-20 pb-12 px-6 md:px-10">
         <!-- Ornaments -->
@@ -1221,7 +1393,7 @@
         <div class="max-w-7xl mx-auto relative z-10 w-full">
            <!-- Header (above the grid) -->
            <div class="mb-12">
-             <div class="font-mono text-xs uppercase tracking-widest text-[#E3FF00] mb-4">/07 — A Teaser</div>
+             <div class="font-mono text-xs uppercase tracking-widest text-[#E3FF00] mb-4">/05 — A Teaser</div>
              <h2 class="mega-text text-4xl md:text-6xl mb-4">
                What is in the <br/><span class="text-[#F34D8E]">FUTURE?.</span>
              </h2>
@@ -1304,9 +1476,9 @@
 
   <script>
     // ============================================
-    // SCROLL-DRIVEN HIDDEN TRANSITION
+    // TIME-DRIVEN TRANSITION ANIMATION
     // ============================================
-    const NUM_SECTIONS = 8; 
+    const NUM_SECTIONS = 6;
     const sections = Array.from(document.querySelectorAll('.section'));
     const progressBar = document.getElementById('scroll-progress');
     const wipeOverlay = document.getElementById('wipe-overlay');
@@ -1314,10 +1486,9 @@
     const navDots = Array.from(document.querySelectorAll('.nav-dot'));
     const navLinks = Array.from(document.querySelectorAll('.nav-link'));
 
-    // Set body height to create scrollable space for transitions
-    document.body.style.height = ((NUM_SECTIONS - 1) * 100) + 'vh';
-
     let currentVisible = 0;
+    let isAnimating = false;
+    const TRANSITION_DURATION = 800; // ms for full wipe animation
 
     function updateWipe(progress) {
       // progress: 0 (hidden) -> 0.5 (covered) -> 1 (passed)
@@ -1340,54 +1511,54 @@
       });
     }
 
-    function setActiveSection(idx) {
+     function setActiveSection(idx) {
       if (idx === currentVisible) return;
       currentVisible = idx;
       sections.forEach((s, i) => s.classList.toggle('active', i === idx));
       navDots.forEach((d, i) => d.classList.toggle('active', i === idx));
-      navLinks.forEach((l, i) => l.style.color = (i === idx - 1) ? 'var(--pink)' : '');
-    }
-
-    function onScroll() {
-      const scrollY = window.scrollY;
-      const vh = window.innerHeight;
-      const totalScrollable = (NUM_SECTIONS - 1) * vh;
-      const globalProgress = Math.max(0, Math.min(1, scrollY / totalScrollable));
-
+      navLinks.forEach((l, i) => l.style.color = (i === idx ) ? 'var(--pink)' : '');
+      // Update progress bar
+      const globalProgress = NUM_SECTIONS > 1 ? idx / (NUM_SECTIONS - 1) : 0;
       progressBar.style.transform = `scaleX(${globalProgress})`;
+    }
 
-      const sectionFloat = scrollY / vh;
+     // Easing function: ease-in-out cubic
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
 
-      // Determine current section
-      const currentIdx = Math.round(sectionFloat);
-      setActiveSection(Math.max(0, Math.min(NUM_SECTIONS - 1, currentIdx)));
+    // Time-driven transition animation
+    function animateTransition(fromIdx, toIdx) {
+      if (isAnimating || fromIdx === toIdx) return;
+      isAnimating = true;
 
-      // Determine transition progress
-      const transitionStart = Math.floor(sectionFloat) * vh;
-      const transitionProgress = (scrollY - transitionStart) / vh;
+      const startTime = performance.now();
 
-      // If we're exactly on a section (no transition), hide wipe
-      if (transitionProgress <= 0 || transitionProgress >= 1) {
-        updateWipe(0);
-      } else {
-        updateWipe(transitionProgress);
+      function frame(now) {
+        const elapsed = now - startTime;
+        const rawProgress = Math.min(elapsed / TRANSITION_DURATION, 1);
+        const easedProgress = easeInOutCubic(rawProgress);
+
+        updateWipe(easedProgress);
+
+        if (rawProgress >= 0.5 && currentVisible === fromIdx) {
+          setActiveSection(toIdx);
+        }
+
+        if (rawProgress < 1) {
+          requestAnimationFrame(frame);
+        } else {
+          updateWipe(0);
+          isAnimating = false;
+        }
       }
-    }
 
-    let rafId = null;
-    function scheduleUpdate() {
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
-        rafId = null;
-        onScroll();
-      });
+      requestAnimationFrame(frame);
     }
-
-    window.addEventListener('scroll', scheduleUpdate, { passive: true });
-    window.addEventListener('resize', scheduleUpdate);
 
     // Initial paint
-    onScroll();
+    setActiveSection(0);
+    updateWipe(0);
 
     // === LANDING ANIMATION CLEANUP ===
     const landingAnimation = document.getElementById('landing-animation');
@@ -1404,7 +1575,7 @@
     // === NAVIGATION ===
     function jumpToSection(idx) {
       idx = Math.max(0, Math.min(NUM_SECTIONS - 1, idx));
-      window.scrollTo({ top: idx * window.innerHeight, behavior: 'smooth' });
+      animateTransition(currentVisible, idx);
     }
 
     document.querySelectorAll('[data-jump]').forEach(el => {
@@ -1426,20 +1597,29 @@
       }
     });
 
-    // Touch swipe
-    let touchStartY = null;
-    window.addEventListener('touchstart', (e) => {
-      touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-    window.addEventListener('touchend', (e) => {
-      if (touchStartY === null) return;
-      const dy = e.changedTouches[0].clientY - touchStartY;
-      if (Math.abs(dy) > 80) {
-        if (dy < 0) jumpToSection(currentVisible + 1);
-        else jumpToSection(currentVisible - 1);
-      }
-      touchStartY = null;
-    }, { passive: true });
+     // Touch swipe - improved for mobile
+     let touchStartY = null;
+     let touchStartX = null;
+     let touchStartTime = null;
+     window.addEventListener('touchstart', (e) => {
+       touchStartY = e.touches[0].clientY;
+       touchStartX = e.touches[0].clientX;
+       touchStartTime = Date.now();
+     }, { passive: true });
+     window.addEventListener('touchend', (e) => {
+       if (touchStartY === null || touchStartX === null || touchStartTime === null) return;
+       const dy = e.changedTouches[0].clientY - touchStartY;
+       const dx = e.changedTouches[0].clientX - touchStartX;
+       const dt = Date.now() - touchStartTime;
+       // Lower threshold (50px) and require vertical swipe (|dy| > |dx|)
+       if (Math.abs(dy) > 50 && dt < 1000 && Math.abs(dy) > Math.abs(dx)) {
+         if (dy < 0) jumpToSection(currentVisible + 1);
+         else jumpToSection(currentVisible - 1);
+       }
+       touchStartY = null;
+       touchStartX = null;
+       touchStartTime = null;
+     }, { passive: true });
 
     // === ANIMATED COUNTERS ===
     const counters = document.querySelectorAll('[data-counter]');
@@ -1472,9 +1652,8 @@
     const clockEl = document.querySelector('[data-clock]');
     function updateClock() {
       if (!clockEl) return;
-      const now = new Date();
-      const est = new Date(now.getTime() + (now.getTimezoneOffset() )); 
-      <!-- + 540) * 60000);-->
+       const now = new Date();
+       const est = new Date(now.getTime() + (now.getTimezoneOffset() + 5) * 60000);
       const hh = String(est.getHours()).padStart(2, '0');
       const mm = String(est.getMinutes()).padStart(2, '0');
       clockEl.textContent = `${hh}:${mm}`;
