@@ -1488,7 +1488,8 @@
 
     let currentVisible = 0;
     let isAnimating = false;
-    const TRANSITION_DURATION = 800; // ms for full wipe animation
+    const TRANSITION_DURATION = 1800; // ms for full wipe animation
+    const WHEEL_SCROLL_BUFFER = 2;   // wheel events required before a section change triggers
 
     function updateWipe(progress) {
       // progress: 0 (hidden) -> 0.5 (covered) -> 1 (passed)
@@ -1596,6 +1597,44 @@
         jumpToSection(currentVisible - 1);
       }
     });
+
+    // Wheel nav - buffered: WHEEL_SCROLL_BUFFER qualifying events needed per section change
+    let wheelCount = 0;
+    let wheelDirection = 0;
+    let wheelResetTimer = null;
+
+    function resetWheelCounter() {
+      wheelCount = 0;
+      wheelDirection = 0;
+    }
+
+    window.addEventListener('wheel', (e) => {
+      if (isAnimating) return;
+      const dir = Math.sign(e.deltaY);
+      if (dir === 0) return;
+
+      if (dir !== wheelDirection) resetWheelCounter();
+      wheelDirection = dir;
+
+      clearTimeout(wheelResetTimer);
+      wheelResetTimer = setTimeout(resetWheelCounter, 250);
+
+      const inner = sections[currentVisible].querySelector('.inner-scroll');
+      const atTop = inner.scrollTop <= 1;
+      const atBottom = inner.scrollTop + inner.clientHeight >= inner.scrollHeight - 1;
+
+      // Inner content still scrollable in this direction: let it scroll, don't count
+      if ((dir > 0 && !atBottom) || (dir < 0 && !atTop)) {
+        wheelCount = 0;
+        return;
+      }
+
+      wheelCount++;
+      if (wheelCount >= WHEEL_SCROLL_BUFFER) {
+        resetWheelCounter();
+        jumpToSection(currentVisible + dir);
+      }
+    }, { passive: true });
 
      // Touch swipe - improved for mobile
      let touchStartY = null;
