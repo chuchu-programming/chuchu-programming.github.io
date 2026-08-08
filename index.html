@@ -38,10 +38,16 @@
 
   /* === WIPE OVERLAY === */
   #wipe-overlay{position:fixed;inset:0;pointer-events:none;z-index:50}
-  .wipe-rect{position:absolute;left:-100%;width:200%;height:calc(160vh/3 + 20px);will-change:transform;border-radius:var(--r-lg)}
-  .wipe-rect-1{top:0;background:var(--cyan)}
-  .wipe-rect-2{top:calc(160vh/3);background:var(--navy)}
-  .wipe-rect-3{top:calc(160vh/3*2);background:var(--pink)}
+  /* Bands are oversized and overlap each other so the tilted (-15deg) trio fully
+     covers the screen at the cover point on any aspect ratio — the old 3×53vh
+     bands met edge-to-edge and left gaps on wider windows. */
+  .wipe-rect{position:absolute;left:-110%;width:220%;height:70vh;will-change:transform;border-radius:var(--r-lg)}
+  /*.wipe-rect-1{top:-4vh;background:var(--cyan)}
+  .wipe-rect-2{top:60vh;background:var(--navy)}
+  .wipe-rect-3{top:124vh;background:var(--pink)}*/
+  .wipe-rect-1{top:-4vh;background:var(--cyan)}
+  .wipe-rect-2{top:50vh;background:var(--navy)}
+  .wipe-rect-3{top:104vh;background:var(--pink)}
 
   /* === GRID BG === */
   .grid-bg{background-image:linear-gradient(rgba(38,40,81,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(38,40,81,.05) 1px,transparent 1px);background-size:80px 80px}
@@ -313,9 +319,9 @@
   <nav id="nav" class="px-6 md:px-10 py-4 flex items-center justify-between bg-white/70 border-b border-[#262851]/10">
     <div class="flex items-center gap-2.5 group cursor-pointer" data-jump="0">
       <div class="w-9 h-9 bg-[#07BBF4] flex items-center justify-center group-hover:bg-[#F34D8E] transition-colors rounded-badge">
-        <span class="text-white font-display">M</span>
+        <span class="text-white font-display">★</span>
       </div>
-      <span class="font-display text-sm tracking-wider">118R.cl</span>
+      <span class="font-display text-sm tracking-wider"></span>
     </div>
     <!--
     <div class="hidden md:flex items-center gap-7 font-mono text-xs uppercase tracking-widest">
@@ -518,7 +524,7 @@
     <section id="about" class="section bg-[#FFFFFF] relative overflow-hidden" data-index="1">
       <!-- Grid overlay -->
       <div class="absolute inset-0 grid-bg opacity-80"></div>
-      <div class="inner-scroll pt-20 pb-12 px-6 md:px-10 relative z-10">
+      <div class="inner-scroll pt-28 pb-12 px-6 md:px-10 relative z-10">
         <div class="ornament top-[10%] right-[6%] hidden lg:block">
           <svg width="70" height="70" viewBox="0 0 100 100" class="spin-ccw-30"><polygon points="50,10 90,85 10,85" fill="none" stroke="#F34D8E" stroke-width="3"/></svg>
         </div>
@@ -705,7 +711,7 @@
       <div class="absolute bottom-24 left-12 w-24 h-24 border-4 border-[#07BBF4] opacity-20 float hidden lg:block rounded-sm"></div>
       <div class="absolute top-[40%] left-[50%] w-3 h-3 bg-[#07BBF4] float hidden lg:block rounded-full"></div>
       <div class="absolute top-[70%] right-[15%] w-2 h-2 bg-[#F34D8E] float-slow hidden lg:block rounded-full"></div>
-      <div class="inner-scroll pt-20 pb-12 px-6 md:px-10 relative z-10">
+      <div class="inner-scroll pt-28 pb-12 px-6 md:px-10 relative z-10">
         <div class="ornament top-[12%] right-[5%] hidden lg:block">
           <div class="relative w-24 h-24">
             <svg width="96" height="96" viewBox="0 0 100 100" class="absolute inset-0 spin-cw-25"><circle cx="50" cy="50" r="44" fill="none" stroke="#07BBF4" stroke-width="2" stroke-dasharray="8 4"/></svg>
@@ -902,7 +908,7 @@
     <section id="connect" class="section bg-[#FFFFFF] relative overflow-hidden" data-index="3">
       <!-- Grid overlay -->
       <div class="absolute inset-0 grid-bg opacity-80"></div>
-      <div class="inner-scroll pt-20 pb-10 px-6 md:px-10 relative z-10">
+      <div class="inner-scroll pt-28 pb-10 px-6 md:px-10 relative z-10">
         <div class="ornament top-[10%] right-[6%] hidden lg:block">
           <div class="relative w-24 h-24">
             <svg width="96" height="96" viewBox="0 0 100 100" class="absolute inset-0 spin-cw-25"><circle cx="50" cy="50" r="44" fill="none" stroke="#07BBF4" stroke-width="2" stroke-dasharray="6 6"/></svg>
@@ -947,12 +953,12 @@
                 <div class="font-mono text-[10px] opacity-60 mt-auto pt-4">4 subscribers</div>
               </div>
             </a>
-            <a href="http://x.com/chuchu_programming" class="social-link group bg-white border-2 border-[#262851] p-4 block min-h-[150px]">
+            <a href="http://x.com/chuchu_dev" class="social-link group bg-white border-2 border-[#262851] p-4 block min-h-[150px]">
               <div class="link-bg" style="background:#3a3a3a"></div>
               <div class="link-content flex flex-col h-full">
                 <i class="fa-brands fa-x-twitter text-2xl mb-4"></i>
                 <div class="font-mono text-[10px] uppercase tracking-widest opacity-60 mb-1">Twitter / X</div>
-                <div class="font-display text-base mb-1">@chuchu_programming</div>
+                <div class="font-display text-base mb-1">@chuchu_dev</div>
                 <div class="font-mono text-[10px] opacity-60 mt-auto pt-4">3 followers</div>
               </div>
             </a>
@@ -1023,7 +1029,7 @@
       <div class="absolute bottom-40 left-[10%] w-20 h-20 border-4 border-[#07BBF4] opacity-20 float hidden lg:block rounded-sm"></div>
       <div class="absolute top-[50%] left-[40%] w-3 h-3 bg-[#F34D8E] float hidden lg:block rounded-full"></div>
 
-      <div class="inner-scroll pt-24 pb-12 px-6 md:px-10 relative z-10">
+      <div class="inner-scroll pt-28 pb-12 px-6 md:px-10 relative z-10">
         <div class="ornament top-[12%] right-[5%] hidden lg:block">
           <div class="relative w-24 h-24">
             <svg width="96" height="96" viewBox="0 0 100 100" class="absolute inset-0 spin-cw-25"><circle cx="50" cy="50" r="44" fill="none" stroke="#07BBF4" stroke-width="2" stroke-dasharray="6 6"/></svg>
@@ -1260,7 +1266,7 @@
     <!-- =================== SECTION 5: FUTURE =================== -->
     <section id="future" class="section bg-[#262851] text-white relative overflow-hidden" data-index="5">
       <div class="absolute inset-0 grid-bg-dark opacity-30"></div>
-      <div class="inner-scroll pt-20 pb-12 px-6 md:px-10">
+      <div class="inner-scroll pt-28 pb-12 px-6 md:px-10">
         <!-- Ornaments -->
         <div class="ornament top-[15%] right-[10%] hidden lg:block">
           <svg width="60" height="60" viewBox="0 0 100 100" class="spin-ccw-30"><polygon points="50,10 90,85 10,85" fill="none" stroke="#F34D8E" stroke-width="2" opacity="0.5"/></svg>
@@ -1294,7 +1300,7 @@
                  <div class="absolute -inset-4 bg-[#F34D8E]/10 rounded-lg-card blur-sm"></div>
                  
                  <div class="relative bg-black/30 aspect-[3/4] overflow-hidden rounded-lg-card max-w-lg">
-                   <img src="sil.png" alt="Coming Soon - Sister Silhouette" class="w-full h-full object-contain p-4"/>
+                   <img src="sil.png" alt="Coming Soon - Sister Silhouette" class="w-full h-full object-contain p-4" />
                    <div class="absolute inset-0 bg-gradient-to-t from-[#262851]/60 via-transparent to-[#262851]/60"></div>
                    
                    <!-- Badges -->
@@ -1372,12 +1378,14 @@
 
     let currentVisible = 0;
     let isAnimating = false;
-    const TRANSITION_DURATION = 3000; // ms for full wipe animation
+    const TRANSITION_DURATION = 1200; // ms for full wipe animation
     const WHEEL_SCROLL_BUFFER = 1;   // wheel events required before a section change triggers
+
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+    function easeInCubic(t) { return t * t * t; }
 
     function updateWipe(progress) {
       // progress: 0 (hidden) -> 0.5 (covered) -> 1 (passed)
-      // We want: 0 -> -100%, 0.5 -> 0%, 1 -> +100%
       const p = Math.max(0, Math.min(1, progress));
 
       // Hide overlay entirely when not transitioning
@@ -1387,11 +1395,16 @@
         wipeOverlay.style.opacity = '1';
       }
 
+      // Tight travel: -80% is just off-screen left and +130% just off-screen right
+      // for a 220vw-wide band, so no time is wasted moving outside the viewport.
+      // Entrance eases out (bands react instantly), exit eases in (accelerates away).
       // Stagger bands slightly for layered feel
       wipeRects.forEach((r, i) => {
         const stagger = (i - 1) * 0.06;
         const tp = Math.max(0, Math.min(1, p + stagger));
-        const t = (-1 + tp * 2) * 200;
+        const t = tp < 0.5
+          ? -80 * (1 - easeOutCubic(tp * 2))
+          : 130 * easeInCubic((tp - 0.5) * 2);
         r.style.transform = `rotate(-15deg) translateX(${t}%)`;
       });
     }
@@ -1407,11 +1420,6 @@
       progressBar.style.transform = `scaleX(${globalProgress})`;
     }
 
-     // Easing function: ease-in-out cubic
-    function easeInOutCubic(t) {
-      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    }
-
     // Time-driven transition animation
     function animateTransition(fromIdx, toIdx) {
       if (isAnimating || fromIdx === toIdx) return;
@@ -1422,9 +1430,8 @@
       function frame(now) {
         const elapsed = now - startTime;
         const rawProgress = Math.min(elapsed / TRANSITION_DURATION, 1);
-        const easedProgress = easeInOutCubic(rawProgress);
 
-        updateWipe(easedProgress);
+        updateWipe(rawProgress);
 
         if (rawProgress >= 0.5 && currentVisible === fromIdx) {
           setActiveSection(toIdx);
