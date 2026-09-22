@@ -596,7 +596,13 @@
       </div>
     </section>
 
-    <!-- =================== SECTION 2: STATS =================== 
+    
+    <!-- =================== FUTURE SECTION DO NOT DELETE SECTION: STATS ===================
+         DORMANT: data-index="2" and the "/02" label below collide with the live #schedule
+         section. NUM_SECTIONS is derived from sections.length, so reviving this block
+         auto-resizes the deck -- but every data-jump (nav links, nav dots, hero CTAs) is
+         positional and must be renumbered together with the data-index values.
+
     <section id="stats" class="section bg-[#07BBF4] text-white relative overflow-hidden" data-index="2">
       <div class="absolute inset-0 grid-bg-dark opacity-50"></div>
       <div class="inner-scroll pt-20 pb-12 px-6 md:px-10">
@@ -700,6 +706,7 @@
       </div>
     </section>
     -->
+
     <!-- =================== SECTION 2: SCHEDULE =================== -->
     <section id="schedule" class="section relative overflow-hidden" data-index="2">
       <!-- Cyan gradient background -->
@@ -801,9 +808,15 @@
       </div>
     </section>
 
-    <!-- =================== SECTION 3: CONTENT =================== 
+    <!--
+
+    <!-- DORMANT: data-index="3" and the "/03" label below collide with the live #connect
+         section. NUM_SECTIONS is derived from sections.length, so reviving this block
+         auto-resizes the deck -- but every data-jump (nav links, nav dots, hero CTAs) is
+         positional and must be renumbered together with the data-index values.
+    <!-- =================== FUTURE SECTION DO NOT DELETE: CONTENT ===================
     <section id="content" class="section relative overflow-hidden" data-index="3">
-      <!-- Pink gradient background
+      <!-- Pink gradient background 
       <div class="absolute inset-0 bg-gradient-to-tr from-[#fdf1f5] via-[#fff5f8] to-[#fce4ed]"></div>
       <!-- Grid overlay
       <div class="absolute inset-0 grid-bg opacity-80"></div>
@@ -901,8 +914,8 @@
           </div>
         </div>
       </div>
-    </section>-->
-
+    </section>
+    -->
 
     <!-- =================== SECTION 3: CONNECT =================== -->
     <section id="connect" class="section bg-[#FFFFFF] relative overflow-hidden" data-index="3">
@@ -922,7 +935,7 @@
         <div class="max-w-7xl mx-auto relative z-10 w-full">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
             <div class="lg:col-span-7">
-              <div class="font-mono text-xs uppercase tracking-widest text-[#07BBF4] mb-3">/04 — Connect</div>
+              <div class="font-mono text-xs uppercase tracking-widest text-[#07BBF4] mb-3">/03 — Connect</div>
               <h2 class="mega-text text-4xl md:text-6xl text-[#262851]">
                 Join the<br/><span class="text-[#07BBF4]">Community.</span>
               </h2>
@@ -935,7 +948,7 @@
           </div>
 
           <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-6">
-            <a href="https://www.twitch.com/chuchu_programming" class="social-link group bg-white border-2 border-[#262851] p-4 block min-h-[150px]">
+            <a href="https://www.twitch.tv/chuchu_programming" class="social-link group bg-white border-2 border-[#262851] p-4 block min-h-[150px]">
               <div class="link-bg" style="background:#40286d"></div>
               <div class="link-content flex flex-col h-full">
                 <i class="fa-brands fa-twitch text-2xl mb-4 text-[#9146FF]"></i>
@@ -991,14 +1004,14 @@
                 <h3 class="mega-text text-2xl md:text-3xl mb-2">Become a <span class="font-bold text-[#FF4600]">Prime Chiplet</span> in the Community.</h3>
                 <p class="text-white/70 max-w-xl text-sm">If you really want to help grow the project, and the warm fuzzy feeling of supporting an independent creator.</p>
               </div>
-              <div href="https://www.ko-fi.com/chuchu_programming" class="md:text-right">
+              <a href="https://www.ko-fi.com/chuchu_programming" class="md:text-right">
                 <button class="cta-btn group inline-flex items-center gap-3 bg-[#F34D8E] text-white px-6 py-3 overflow-hidden relative hover:opacity-95">
                   <span class="cta-fill" style="background:#07BBF4"></span>
                   <span class="relative font-mono text-sm uppercase tracking-wider z-10">Ko-fi</span>
                   <i class="fa-solid fa-arrow-right relative z-10"></i>
                 </button>
                 <div class="mt-2 font-mono text-[10px] uppercase tracking-widest text-white/50">We will be very thankfull</div>
-              </div>
+              </a>
             </div>
           </div>
 
@@ -1095,7 +1108,77 @@
               </div>
             </div>
 
-            <!-- Milestone 2: RIGHT (1000 Followers) -->
+            <!-- Milestone 2: RIGHT (social media art) -->
+
+            <div class="tl-node right">
+              <div class="tl-dot active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+              </div>
+              <div class="tl-connector"></div>
+              <div class="tl-card active-card">
+                <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                  <div class="flex-1">
+                    <div class="font-mono text-xs uppercase tracking-widest text-white/70 mb-2">Milestone 02</div>
+                    <div class="font-display text-2xl mb-2">Social Media Art</div>
+                    <p class="text-sm">Finishing up the art for social media!</p>
+                  </div>
+                  <div class="flex flex-col items-end gap-2">
+                    <div class="font-mono text-[10px] uppercase tracking-widest text-white/50">Status</div>
+                    <div class="bg-white/20 px-3 py-1 font-mono text-xs uppercase tracking-wider rounded-badge flex items-center gap-2">
+                      <span class="w-2 h-2 bg-[#E3FF00] rounded-full"></span>
+                      <span class="text-[#E3FF00]">In Progress</span>
+                    </div>
+                    <div class="font-mono text-[10px] text-white/50 mt-2">Reward: Social Media Art</div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+                    <div class="h-full bg-[#E3FF00] rounded-full transition-all" style="width:64%"></div>
+                  </div>
+                  <div class="flex justify-between mt-1">
+                    <span class="font-mono text-[9px] text-white/50">0%</span>
+                    <span class="font-mono text-[9px] text-[#E3FF00]">64% / 100%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Milestone 3: LEFT (Live2D model) -->
+
+            <div class="tl-node left">
+              <div class="tl-dot active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+              </div>
+              <div class="tl-connector"></div>
+              <div class="tl-card active-card">
+                <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                  <div class="flex-1">
+                    <div class="font-mono text-xs uppercase tracking-widest text-white/70 mb-2">Milestone 03</div>
+                    <div class="font-display text-2xl mb-2">Live2D Model</div>
+                    <p class="text-sm">Art is done — rigging starts now!</p>
+                  </div>
+                  <div class="flex flex-col items-end gap-2">
+                    <div class="font-mono text-[10px] uppercase tracking-widest text-white/50">Status</div>
+                    <div class="bg-white/20 px-3 py-1 font-mono text-xs uppercase tracking-wider rounded-badge flex items-center gap-2">
+                      <span class="w-2 h-2 bg-[#E3FF00] rounded-full"></span>
+                      <span class="text-[#E3FF00]">In Progress</span>
+                    </div>
+                    <div class="font-mono text-[10px] text-white/50 mt-2">Reward: Live2D Debut</div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+                    <div class="h-full bg-[#E3FF00] rounded-full transition-all" style="width:50%"></div>
+                  </div>
+                  <div class="flex justify-between mt-1">
+                    <span class="font-mono text-[9px] text-white/50">0%</span>
+                    <span class="font-mono text-[9px] text-[#E3FF00]">50% / 100%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Milestone 4: RIGHT (1000 Followers) -->
             <div class="tl-node right">
               <div class="tl-dot planned">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
@@ -1104,8 +1187,8 @@
               <div class="tl-card">
                 <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                   <div class="flex-1">
-                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone 02</div>
-                    <div class="font-display text-2xl text-[#262851] mb-2">5,000 Followers</div>
+                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone 04</div>
+                    <div class="font-display text-2xl text-[#262851] mb-2">10000 Followers</div>
                     <p class="text-sm text-[#262851]/80">When the community grows, so does the family — meet the new member!</p>
                   </div>
                   <div class="flex flex-col items-end gap-2">
@@ -1120,7 +1203,7 @@
               </div>
             </div>
 
-            <!-- Milestone 3: LEFT ($1500 Monthly Income) -->
+            <!-- Milestone 5: LEFT ($1500 Monthly Income) -->
             <div class="tl-node left">
               <div class="tl-dot planned">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
@@ -1129,8 +1212,8 @@
               <div class="tl-card">
                 <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                   <div class="flex-1">
-                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone 03</div>
-                    <div class="font-display text-2xl text-[#262851] mb-2">$1,500 Monthly Income</div>
+                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone 05</div>
+                    <div class="font-display text-xl text-[#262851] mb-2">Monthly Income to go Full-Time</div>
                     <p class="text-sm text-[#262851]/80">The dream of going full-time — when passion meets dedication.</p>
                   </div>
                   <div class="flex flex-col items-end gap-2">
@@ -1145,7 +1228,138 @@
               </div>
             </div>
 
-            <!-- Milestone X1: RIGHT (Costume) -->
+            <!-- Milestone X1: RIGHT (puppet) -->
+
+            <div class="tl-node right">
+              <div class="tl-dot active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+              </div>
+              <div class="tl-connector"></div>
+              <div class="tl-card active-card">
+                <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                  <div class="flex-1">
+                    <div class="font-mono text-xs uppercase tracking-widest text-white/70 mb-2">Milestone X1</div>
+                    <div class="font-display text-2xl mb-2">Puppet Animatronic</div>
+                    <p class="text-sm">Finishing the puppet animatronic and put in webcam</p>
+                  </div>
+                  <div class="flex flex-col items-end gap-2">
+                    <div class="font-mono text-[10px] uppercase tracking-widest text-white/50">Status</div>
+                    <div class="bg-white/20 px-3 py-1 font-mono text-xs uppercase tracking-wider rounded-badge flex items-center gap-2">
+                      <span class="w-2 h-2 bg-[#E3FF00] rounded-full"></span>
+                      <span class="text-[#E3FF00]">Ongoing</span>
+                    </div>
+                    <div class="font-mono text-[10px] text-white/50 mt-2">Reward: Physical Form</div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+                    <div class="h-full bg-[#E3FF00] rounded-full transition-all" style="width:42%"></div>
+                  </div>
+                  <div class="flex justify-between mt-1">
+                    <span class="font-mono text-[9px] text-white/50">0%</span>
+                    <span class="font-mono text-[9px] text-[#E3FF00]">42% / 100%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Milestone X2: RIGHT (hard head) -->
+            
+            <div class="tl-node left">
+              <div class="tl-dot active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+              </div>
+              <div class="tl-connector"></div>
+              <div class="tl-card active-card">
+                <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                  <div class="flex-1">
+                    <div class="font-mono text-xs uppercase tracking-widest text-white/70 mb-2">Milestone X2</div>
+                    <div class="font-display text-2xl mb-2">Head Animatronic</div>
+                    <p class="text-sm">Finishing the hard plastic animatronic head with vision capabilities!</p>
+                  </div>
+                  <div class="flex flex-col items-end gap-2">
+                    <div class="font-mono text-[10px] uppercase tracking-widest text-white/50">Status</div>
+                    <div class="bg-white/20 px-3 py-1 font-mono text-xs uppercase tracking-wider rounded-badge flex items-center gap-2">
+                      <span class="w-2 h-2 bg-[#E3FF00] rounded-full"></span>
+                      <span class="text-[#E3FF00]">Ongoing</span>
+                    </div>
+                    <div class="font-mono text-[10px] text-white/50 mt-2">Reward: Physical Form v02</div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+                    <div class="h-full bg-[#E3FF00] rounded-full transition-all" style="width:63%"></div>
+                  </div>
+                  <div class="flex justify-between mt-1">
+                    <span class="font-mono text-[9px] text-white/50">0%</span>
+                    <span class="font-mono text-[9px] text-[#E3FF00]">63% / 100%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Milestone X3: RIGHT (opening video) -->
+
+            <div class="tl-node right">
+              <div class="tl-dot active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+              </div>
+              <div class="tl-connector"></div>
+              <div class="tl-card active-card">
+                <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                  <div class="flex-1">
+                    <div class="font-mono text-xs uppercase tracking-widest text-white/70 mb-2">Milestone X3</div>
+                    <div class="font-display text-2xl mb-2">Opening Video</div>
+                    <p class="text-sm">Making an opening video for the channel — or just for fun!</p>
+                  </div>
+                  <div class="flex flex-col items-end gap-2">
+                    <div class="font-mono text-[10px] uppercase tracking-widest text-white/50">Status</div>
+                    <div class="bg-white/20 px-3 py-1 font-mono text-xs uppercase tracking-wider rounded-badge flex items-center gap-2">
+                      <span class="w-2 h-2 bg-[#E3FF00] rounded-full"></span>
+                      <span class="text-[#E3FF00]">Ongoing</span>
+                    </div>
+                    <div class="font-mono text-[10px] text-white/50 mt-2">Reward: Channel Intro</div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+                    <div class="h-full bg-[#E3FF00] rounded-full transition-all" style="width:4%"></div>
+                  </div>
+                  <div class="flex justify-between mt-1">
+                    <span class="font-mono text-[9px] text-white/50">0%</span>
+                    <span class="font-mono text-[9px] text-[#E3FF00]">4% / 100%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Milestone X4: LEFT (soft face) -->
+
+            <div class="tl-node left">
+              <div class="tl-dot planned">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+              </div>
+              <div class="tl-connector"></div>
+              <div class="tl-card">
+                <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                  <div class="flex-1">
+                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone X4</div>
+                    <div class="font-display text-2xl text-[#262851] mb-2">Head Animatronic v02</div>
+                    <p class="text-sm text-[#262851]/80">Now soft face, more servos and facial expression!!</p>
+                  </div>
+                  <div class="flex flex-col items-end gap-2">
+                    <div class="font-mono text-[10px] uppercase tracking-widest text-[#262851]/50">Status</div>
+                    <div class="bg-[#F34D8E]/10 px-3 py-1 font-mono text-xs uppercase tracking-wider rounded-badge flex items-center gap-2 border border-[#F34D8E]/30">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#F34D8E" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+                      <span class="text-[#F34D8E]">Planned</span>
+                    </div>
+                    <div class="font-mono text-[10px] text-[#262851]/50 mt-2">Reward: Physical Form v03</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Milestone X5: RIGHT (Costume) -->
             <div class="tl-node right">
               <div class="tl-dot planned">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
@@ -1154,7 +1368,7 @@
               <div class="tl-card">
                 <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                   <div class="flex-1">
-                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone X1</div>
+                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone X5</div>
                     <div class="font-display text-2xl text-[#262851] mb-2">Costume!</div>
                     <p class="text-sm text-[#262851]/80">Designing a new costume!.</p>
                   </div>
@@ -1170,7 +1384,7 @@
               </div>
             </div>
 
-            <!-- Milestone X2: LEFT (Scientific Publication) -->
+            <!-- Milestone X6: LEFT (Scientific Publication) -->
             <div class="tl-node left">
               <div class="tl-dot planned">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
@@ -1179,7 +1393,7 @@
               <div class="tl-card">
                 <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                   <div class="flex-1">
-                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone X2</div>
+                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone X6</div>
                     <div class="font-display text-2xl text-[#262851] mb-2">Publishing Paper</div>
                     <p class="text-sm text-[#262851]/80">Making a scientific paper and try to publish publicly!.</p>
                   </div>
@@ -1189,13 +1403,13 @@
                       <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#F34D8E" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
                       <span class="text-[#F34D8E]">Planned</span>
                     </div>
-                    <div class="font-mono text-[10px] text-[#262851]/50 mt-2">Reward: Scientific Publication and probably doxing myself</div>
+                    <div class="font-mono text-[10px] text-[#262851]/50 mt-2">Reward: Scientific Publication and doxing myself</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Milestone X3: Vedal Collab -->
+            <!-- Milestone X7: RIGHT (Vedal Collab) -->
             <div class="tl-node right">
               <div class="tl-dot planned">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
@@ -1204,7 +1418,7 @@
               <div class="tl-card">
                 <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                   <div class="flex-1">
-                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone X3</div>
+                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/60 mb-2">Milestone X7</div>
                     <div class="font-display text-2xl text-[#262851] mb-2">Vedal Collab</div>
                     <p class="text-sm text-[#262851]/80">Collaborating with Vedal to create amazing content! Why not dreaming aboutit?</p>
                   </div>
@@ -1220,7 +1434,7 @@
               </div>
             </div>
 
-            <!-- Milestone X: RIGHT (Placeholder) -->
+            <!-- Milestone X8: LEFT (Placeholder) -->
             <div class="tl-node left">
               <div class="tl-dot planned">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
@@ -1229,7 +1443,7 @@
               <div class="tl-card planned-card">
                 <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                   <div class="flex-1">
-                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/40 mb-2">Milestone 04</div>
+                    <div class="font-mono text-xs uppercase tracking-widest text-[#262851]/40 mb-2">Milestone X8</div>
                     <div class="font-display text-2xl text-[#262851]/50 mb-2">[TBD]</div>
                     <p class="text-sm text-[#262851]/50">More amazing milestones waiting to be unlocked... stay tuned!</p>
                   </div>
@@ -1368,8 +1582,9 @@
     // ============================================
     // TIME-DRIVEN TRANSITION ANIMATION
     // ============================================
-    const NUM_SECTIONS = 6;
+    // Derived from the DOM so the deck length can never drift out of sync with the markup.
     const sections = Array.from(document.querySelectorAll('.section'));
+    const NUM_SECTIONS = sections.length;
     const progressBar = document.getElementById('scroll-progress');
     const wipeOverlay = document.getElementById('wipe-overlay');
     const wipeRects = Array.from(wipeOverlay.querySelectorAll('.wipe-rect'));
