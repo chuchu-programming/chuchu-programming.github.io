@@ -1504,16 +1504,20 @@
              <div class="h-1 w-20 bg-[#07BBF4] rounded-full mb-6"></div>
            </div>
 
-           <!-- Image on Left, Text on Right -->
+           <!-- Left-aligned: silhouette flush to the left edge, text flows right after it -->
            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:items-center">
              <!-- Left: Silhouette Image -->
-             <div class="lg:col-span-5 flex justify-center lg:justify-end">
+             <div class="lg:col-span-4 flex justify-start">
                <div class="relative">
                  <!-- Decorative frame -->
                  <div class="absolute -inset-3 border-2 border-[#F34D8E]/30 rounded-lg-card"></div>
                  <div class="absolute -inset-3 bg-[#F34D8E]/10 rounded-lg-card blur-sm"></div>
 
-                 <div class="relative bg-[#262851] aspect-[3/4] overflow-hidden rounded-lg-card max-w-md">
+                 <!-- Height-capped so the panel never outgrows the viewport: max-width is
+                      min(20rem, 44vh x 0.88) and the box is 88%, so its height is that value
+                      x .88 (<=427px tall at 1080p) and it shrinks on shorter windows, keeping
+                      the Future section fully on screen with no inner scroll. -->
+                 <div class="relative bg-[#262851] aspect-[3/4] overflow-hidden rounded-lg-card max-w-[min(20rem,calc(44vh*0.88))]">
                    <img src="sil.png" alt="Coming Soon - Sister Silhouette" class="w-full h-full object-contain p-4" />
                    <div class="absolute inset-0 bg-gradient-to-t from-[#262851]/60 via-transparent to-[#262851]/60"></div>
 
@@ -1543,8 +1547,8 @@
                </div>
              </div>
 
-             <!-- Right: Text -->
-             <div class="lg:col-span-7 lg:col-start-7">
+             <!-- Right: Text (starts at column 5, directly right of the left-aligned card) -->
+             <div class="lg:col-span-8 lg:col-start-5">
                <p class="text-lg md:text-xl leading-relaxed text-white/80 max-w-2xl mb-6">
                   Mimi won't be the only one broadcasting...
                </p> 
